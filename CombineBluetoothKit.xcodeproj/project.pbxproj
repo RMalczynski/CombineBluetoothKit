@@ -10,6 +10,7 @@
 		B513F1B7241195A600824A29 /* CombineBluetoothKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B513F1AD241195A500824A29 /* CombineBluetoothKit.framework */; };
 		B513F1BC241195A600824A29 /* CombineBluetoothKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B513F1BB241195A600824A29 /* CombineBluetoothKitTests.swift */; };
 		B513F1BE241195A600824A29 /* CombineBluetoothKit.h in Headers */ = {isa = PBXBuildFile; fileRef = B513F1B0241195A500824A29 /* CombineBluetoothKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B5CED23D241197F300B09E8C /* ManagerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CED23C241197F300B09E8C /* ManagerState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		B513F1B6241195A600824A29 /* CombineBluetoothKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CombineBluetoothKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B513F1BB241195A600824A29 /* CombineBluetoothKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineBluetoothKitTests.swift; sourceTree = "<group>"; };
 		B513F1BD241195A600824A29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5CED23C241197F300B09E8C /* ManagerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 		B513F1AF241195A500824A29 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				B5CED23B241197C300B09E8C /* Manager */,
 				B513F1B0241195A500824A29 /* CombineBluetoothKit.h */,
 				B513F1B1241195A500824A29 /* Info.plist */,
 			);
@@ -84,6 +87,14 @@
 				B513F1BD241195A600824A29 /* Info.plist */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		B5CED23B241197C300B09E8C /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				B5CED23C241197F300B09E8C /* ManagerState.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,6 +159,7 @@
 				TargetAttributes = {
 					B513F1AC241195A500824A29 = {
 						CreatedOnToolsVersion = 11.3;
+						LastSwiftMigration = 1130;
 					};
 					B513F1B5241195A600824A29 = {
 						CreatedOnToolsVersion = 11.3;
@@ -195,6 +207,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5CED23D241197F300B09E8C /* ManagerState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +353,7 @@
 		B513F1C2241195A600824A29 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = QZ7GPNNM9G;
@@ -356,6 +370,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.rmalczynski.CombineBluetoothKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -364,6 +379,7 @@
 		B513F1C3241195A600824A29 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = QZ7GPNNM9G;
@@ -388,6 +404,7 @@
 		B513F1C5241195A600824A29 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QZ7GPNNM9G;
 				INFOPLIST_FILE = CombineBluetoothKitTests/Info.plist;
@@ -406,6 +423,7 @@
 		B513F1C6241195A600824A29 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QZ7GPNNM9G;
 				INFOPLIST_FILE = CombineBluetoothKitTests/Info.plist;
