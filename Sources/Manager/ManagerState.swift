@@ -6,12 +6,14 @@
 
 import Foundation
 
-/// Equivalent of `CBManagerState`
+/// Equivalent of `CBManagerState`.
 public enum ManagerState: Int {
+    
     case unknown
     case resetting
     case unsupported
     case unauthorized
     case poweredOff
     case poweredOn
+    
 }
