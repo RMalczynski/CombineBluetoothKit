@@ -1,9 +1,7 @@
 //
-//  TimeoutStrategy.swift
 //  CombineBluetoothKit
-//
-//  Created by Rafał Małczyński on 08/03/2020.
 //  Copyright © 2020 Rafał Małczyński. All rights reserved.
+//  Licensed under the MIT license (see LICENSE file)
 //
 
 import Foundation

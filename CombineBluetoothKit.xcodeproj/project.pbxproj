@@ -14,6 +14,8 @@
 		B5CED2632413E93D00B09E8C /* StubBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CED2622413E93D00B09E8C /* StubBehavior.swift */; };
 		B5CED2652415192E00B09E8C /* TimeoutStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CED2642415192E00B09E8C /* TimeoutStrategy.swift */; };
 		B5CED2682415264700B09E8C /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = B5CED2672415264700B09E8C /* Logging */; };
+		B5CED26A24152C9400B09E8C /* ManagerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CED26924152C9400B09E8C /* ManagerType.swift */; };
+		B5CED26C2415403000B09E8C /* BluetoothError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CED26B2415403000B09E8C /* BluetoothError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,8 @@
 		B5CED23C241197F300B09E8C /* ManagerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerState.swift; sourceTree = "<group>"; };
 		B5CED2622413E93D00B09E8C /* StubBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubBehavior.swift; sourceTree = "<group>"; };
 		B5CED2642415192E00B09E8C /* TimeoutStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeoutStrategy.swift; sourceTree = "<group>"; };
+		B5CED26924152C9400B09E8C /* ManagerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerType.swift; sourceTree = "<group>"; };
+		B5CED26B2415403000B09E8C /* BluetoothError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +88,7 @@
 				B513F1B1241195A500824A29 /* Info.plist */,
 				B5CED2622413E93D00B09E8C /* StubBehavior.swift */,
 				B5CED2642415192E00B09E8C /* TimeoutStrategy.swift */,
+				B5CED26B2415403000B09E8C /* BluetoothError.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -101,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				B5CED23C241197F300B09E8C /* ManagerState.swift */,
+				B5CED26924152C9400B09E8C /* ManagerType.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -223,7 +229,9 @@
 			files = (
 				B5CED23D241197F300B09E8C /* ManagerState.swift in Sources */,
 				B5CED2652415192E00B09E8C /* TimeoutStrategy.swift in Sources */,
+				B5CED26C2415403000B09E8C /* BluetoothError.swift in Sources */,
 				B5CED2632413E93D00B09E8C /* StubBehavior.swift in Sources */,
+				B5CED26A24152C9400B09E8C /* ManagerType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
