@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,7 @@
 		B5CED23D241197F300B09E8C /* ManagerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CED23C241197F300B09E8C /* ManagerState.swift */; };
 		B5CED2632413E93D00B09E8C /* StubBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CED2622413E93D00B09E8C /* StubBehavior.swift */; };
 		B5CED2652415192E00B09E8C /* TimeoutStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CED2642415192E00B09E8C /* TimeoutStrategy.swift */; };
+		B5CED2682415264700B09E8C /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = B5CED2672415264700B09E8C /* Logging */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5CED2682415264700B09E8C /* Logging in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,6 +133,9 @@
 			dependencies = (
 			);
 			name = CombineBluetoothKit;
+			packageProductDependencies = (
+				B5CED2672415264700B09E8C /* Logging */,
+			);
 			productName = CombineBluetoothKit;
 			productReference = B513F1AD241195A500824A29 /* CombineBluetoothKit.framework */;
 			productType = "com.apple.product-type.framework";
@@ -181,6 +186,9 @@
 				Base,
 			);
 			mainGroup = B513F1A3241195A500824A29;
+			packageReferences = (
+				B5CED2662415264700B09E8C /* XCRemoteSwiftPackageReference "swift-log" */,
+			);
 			productRefGroup = B513F1AE241195A500824A29 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -478,6 +486,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B5CED2662415264700B09E8C /* XCRemoteSwiftPackageReference "swift-log" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-log.git";
+			requirement = {
+				kind = exactVersion;
+				version = 1.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B5CED2672415264700B09E8C /* Logging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B5CED2662415264700B09E8C /* XCRemoteSwiftPackageReference "swift-log" */;
+			productName = Logging;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B513F1A4241195A500824A29 /* Project object */;
 }
