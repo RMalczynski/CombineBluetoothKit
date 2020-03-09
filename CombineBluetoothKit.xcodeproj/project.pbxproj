@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		B513F1B7241195A600824A29 /* CombineBluetoothKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B513F1AD241195A500824A29 /* CombineBluetoothKit.framework */; };
-		B513F1BC241195A600824A29 /* CombineBluetoothKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B513F1BB241195A600824A29 /* CombineBluetoothKitTests.swift */; };
 		B513F1BE241195A600824A29 /* CombineBluetoothKit.h in Headers */ = {isa = PBXBuildFile; fileRef = B513F1B0241195A500824A29 /* CombineBluetoothKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B5AD3AD02416E24700BD5E98 /* ManagerTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AD3ACF2416E24700BD5E98 /* ManagerTypeTests.swift */; };
+		B5AD3AD32416E4C700BD5E98 /* ManagerTypeStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AD3AD22416E4C700BD5E98 /* ManagerTypeStub.swift */; };
 		B5CED23D241197F300B09E8C /* ManagerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CED23C241197F300B09E8C /* ManagerState.swift */; };
 		B5CED2632413E93D00B09E8C /* StubBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CED2622413E93D00B09E8C /* StubBehavior.swift */; };
 		B5CED2652415192E00B09E8C /* TimeoutStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CED2642415192E00B09E8C /* TimeoutStrategy.swift */; };
@@ -33,8 +34,9 @@
 		B513F1B0241195A500824A29 /* CombineBluetoothKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CombineBluetoothKit.h; sourceTree = "<group>"; };
 		B513F1B1241195A500824A29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B513F1B6241195A600824A29 /* CombineBluetoothKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CombineBluetoothKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B513F1BB241195A600824A29 /* CombineBluetoothKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineBluetoothKitTests.swift; sourceTree = "<group>"; };
 		B513F1BD241195A600824A29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5AD3ACF2416E24700BD5E98 /* ManagerTypeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerTypeTests.swift; sourceTree = "<group>"; };
+		B5AD3AD22416E4C700BD5E98 /* ManagerTypeStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerTypeStub.swift; sourceTree = "<group>"; };
 		B5CED23C241197F300B09E8C /* ManagerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerState.swift; sourceTree = "<group>"; };
 		B5CED2622413E93D00B09E8C /* StubBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubBehavior.swift; sourceTree = "<group>"; };
 		B5CED2642415192E00B09E8C /* TimeoutStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeoutStrategy.swift; sourceTree = "<group>"; };
@@ -96,10 +98,19 @@
 		B513F1BA241195A600824A29 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				B513F1BB241195A600824A29 /* CombineBluetoothKitTests.swift */,
+				B5AD3AD12416E4BD00BD5E98 /* Stubs */,
+				B5AD3ACF2416E24700BD5E98 /* ManagerTypeTests.swift */,
 				B513F1BD241195A600824A29 /* Info.plist */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		B5AD3AD12416E4BD00BD5E98 /* Stubs */ = {
+			isa = PBXGroup;
+			children = (
+				B5AD3AD22416E4C700BD5E98 /* ManagerTypeStub.swift */,
+			);
+			path = Stubs;
 			sourceTree = "<group>";
 		};
 		B5CED23B241197C300B09E8C /* Manager */ = {
@@ -239,7 +250,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B513F1BC241195A600824A29 /* CombineBluetoothKitTests.swift in Sources */,
+				B5AD3AD02416E24700BD5E98 /* ManagerTypeTests.swift in Sources */,
+				B5AD3AD32416E4C700BD5E98 /* ManagerTypeStub.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
