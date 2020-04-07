@@ -10,7 +10,7 @@ import CoreBluetooth
 import Combine
 @testable import CombineBluetoothKit
 
-class ManagerStub: ManagerType {
+class ManagerStub: Manager {
     
     var manager = CBCentralManager()
     
