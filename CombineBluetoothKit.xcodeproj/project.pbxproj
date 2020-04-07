@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D7153CF243D22CC00C8E6C0 /* CentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7153CE243D22CC00C8E6C0 /* CentralManager.swift */; };
+		9D7153D2243D230700C8E6C0 /* Peripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7153D1243D230700C8E6C0 /* Peripheral.swift */; };
+		9D7153D4243D268B00C8E6C0 /* CentralManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7153D3243D268B00C8E6C0 /* CentralManagerDelegate.swift */; };
 		B513F1B7241195A600824A29 /* CombineBluetoothKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B513F1AD241195A500824A29 /* CombineBluetoothKit.framework */; };
 		B513F1BE241195A600824A29 /* CombineBluetoothKit.h in Headers */ = {isa = PBXBuildFile; fileRef = B513F1B0241195A500824A29 /* CombineBluetoothKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B5AD3AD02416E24700BD5E98 /* ManagerTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AD3ACF2416E24700BD5E98 /* ManagerTypeTests.swift */; };
@@ -30,6 +33,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9D7153CE243D22CC00C8E6C0 /* CentralManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralManager.swift; sourceTree = "<group>"; };
+		9D7153D1243D230700C8E6C0 /* Peripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Peripheral.swift; sourceTree = "<group>"; };
+		9D7153D3243D268B00C8E6C0 /* CentralManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralManagerDelegate.swift; sourceTree = "<group>"; };
 		B513F1AD241195A500824A29 /* CombineBluetoothKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CombineBluetoothKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B513F1B0241195A500824A29 /* CombineBluetoothKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CombineBluetoothKit.h; sourceTree = "<group>"; };
 		B513F1B1241195A500824A29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -64,6 +70,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9D7153CD243D22B700C8E6C0 /* CentralManager */ = {
+			isa = PBXGroup;
+			children = (
+				9D7153CE243D22CC00C8E6C0 /* CentralManager.swift */,
+				9D7153D3243D268B00C8E6C0 /* CentralManagerDelegate.swift */,
+			);
+			path = CentralManager;
+			sourceTree = "<group>";
+		};
+		9D7153D0243D22F900C8E6C0 /* Peripheral */ = {
+			isa = PBXGroup;
+			children = (
+				9D7153D1243D230700C8E6C0 /* Peripheral.swift */,
+			);
+			path = Peripheral;
+			sourceTree = "<group>";
+		};
 		B513F1A3241195A500824A29 = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +108,8 @@
 		B513F1AF241195A500824A29 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				9D7153D0243D22F900C8E6C0 /* Peripheral */,
+				9D7153CD243D22B700C8E6C0 /* CentralManager */,
 				B5CED23B241197C300B09E8C /* Manager */,
 				B513F1B0241195A500824A29 /* CombineBluetoothKit.h */,
 				B513F1B1241195A500824A29 /* Info.plist */,
@@ -239,10 +264,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5CED23D241197F300B09E8C /* ManagerState.swift in Sources */,
+				9D7153D2243D230700C8E6C0 /* Peripheral.swift in Sources */,
 				B5CED2652415192E00B09E8C /* TimeoutStrategy.swift in Sources */,
 				B5CED26C2415403000B09E8C /* BluetoothError.swift in Sources */,
 				B5CED2632413E93D00B09E8C /* StubBehavior.swift in Sources */,
 				B5CED26A24152C9400B09E8C /* ManagerType.swift in Sources */,
+				9D7153D4243D268B00C8E6C0 /* CentralManagerDelegate.swift in Sources */,
+				9D7153CF243D22CC00C8E6C0 /* CentralManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

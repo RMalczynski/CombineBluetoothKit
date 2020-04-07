@@ -8,21 +8,21 @@ import Foundation
 import Combine
 
 /// Type designated for wrapping classes that inherit from `CBManager`
-public protocol ManagerType: AnyObject {
-    associatedtype Manager
+protocol Manager: AnyObject {
+    associatedtype ManagerType
     
     /// Object inheriting from `CBManager`
-    var manager: Manager { get }
+    var manager: ManagerType { get }
     
-    /// Current state of `Manager`
+    /// Current state of `ManagerType`
     var state: PassthroughSubject<ManagerState, Never> { get }
     
 }
 
-public extension ManagerType {
+extension Manager {
     
     /**
-     Method which ensures that `state` property of `ManagerType` is set to `poweredOn` during subscription.
+     Method which ensures that `state` property of `Manager` is set to `poweredOn` during subscription.
      If not, `BluetoothError` is emmitted.
     */
     func ensurePoweredOn() -> AnyPublisher<Never, BluetoothError> {
