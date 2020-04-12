@@ -21,7 +21,9 @@ public class CentralManager: CentralManagerProtocol {
     public var state = PassthroughSubject<ManagerState, Never>()
     private let delegate: CentralManagerDelegate
     
-    init(
+    private var cancellables = [AnyCancellable]()
+    
+    public init(
         centralManager: CBCentralManager,
         managerDelegate: CentralManagerDelegate
     ) {
@@ -29,24 +31,40 @@ public class CentralManager: CentralManagerProtocol {
         self.delegate = managerDelegate
         
         self.manager.delegate = self.delegate
+        
+        subscribeToDelegate()
     }
     
     func scanForPeripherals(
         withServices services: [CBUUID]?,
         options: [String: Any]?
     ) -> AnyPublisher<Peripheral, BluetoothError> {
-        manager.scanForPeripherals(withServices: services, options: options)
-        
-        let ensurer = ensurePoweredOn()
-            .compactMap { $0 as? Peripheral }
-        
-        return delegate.didDiscoverAdvertisementData
-            .map { peripheral, advertisementData, rssi in // TODO: Use advData and rssi
-                return Peripheral(with: peripheral)
+        let publisher = Publishers.BlockPublisher { [weak self] () -> AnyPublisher<Peripheral, BluetoothError> in
+            guard let self = self else {
+                return Fail(outputType: Peripheral.self, failure: BluetoothError.deallocated).eraseToAnyPublisher()
             }
-            .mapError { _ in BluetoothError.unknown}
-            .merge(with: ensurer)
-            .eraseToAnyPublisher()
+            
+            self.manager.scanForPeripherals(withServices: services, options: options)
+            
+            return self.delegate
+                .didDiscoverAdvertisementData
+                .map { peripheral, advertisementData, rssi in
+                    return Peripheral(with: peripheral)
+                }
+                .mapError { _ in BluetoothError.unknown}
+                .eraseToAnyPublisher()
+        }.eraseToAnyPublisher()
+
+        return ensurePoweredOn(for: publisher)
+    }
+    
+    // MARK: - Private methods
+    
+    private func subscribeToDelegate() {
+        delegate
+            .didUpdateState
+            .sink { self.state.send($0) }
+            .store(in: &cancellables)
     }
     
 }

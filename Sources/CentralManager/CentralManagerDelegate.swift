@@ -8,7 +8,7 @@ import Foundation
 import CoreBluetooth
 import Combine
 
-final class CentralManagerDelegate: NSObject, CBCentralManagerDelegate {
+public final class CentralManagerDelegate: NSObject, CBCentralManagerDelegate {
     
     let didConnectPeripheral = PassthroughSubject<CBPeripheral, Never>()
     let didDisconnectPeripheral = PassthroughSubject<CBPeripheral, Error>()
@@ -18,32 +18,32 @@ final class CentralManagerDelegate: NSObject, CBCentralManagerDelegate {
     let didUpdateState = PassthroughSubject<ManagerState, Never>()
     let willRestoreState = PassthroughSubject<[String: Any], Never>()
     
-    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+    public func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         didConnectPeripheral.send(peripheral)
     }
     
-    func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
+    public func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         
     }
     
-    func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
+    public func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
         
     }
     
-    func centralManager(_ central: CBCentralManager, connectionEventDidOccur event: CBConnectionEvent, for peripheral: CBPeripheral) {
+    public func centralManager(_ central: CBCentralManager, connectionEventDidOccur event: CBConnectionEvent, for peripheral: CBPeripheral) {
         
     }
     
-    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
+    public func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         didDiscoverAdvertisementData.send((peripheral, advertisementData, RSSI))
     }
     
-    func centralManagerDidUpdateState(_ central: CBCentralManager) {
+    public func centralManagerDidUpdateState(_ central: CBCentralManager) {
         guard let state = ManagerState(rawValue: central.state.rawValue) else { return }
         didUpdateState.send(state)
     }
     
-    func centralManager(_ central: CBCentralManager, didUpdateANCSAuthorizationFor peripheral: CBPeripheral) {
+    public func centralManager(_ central: CBCentralManager, didUpdateANCSAuthorizationFor peripheral: CBPeripheral) {
         
     }
     

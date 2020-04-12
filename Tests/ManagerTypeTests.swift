@@ -1,9 +1,7 @@
 //
-//  ManagerTypeTests.swift
-//  CombineBluetoothKitTests
-//
-//  Created by Rafał Małczyński on 09/03/2020.
+//  CombineBluetoothKit
 //  Copyright © 2020 Rafał Małczyński. All rights reserved.
+//  Licensed under the MIT license (see LICENSE file)
 //
 
 import XCTest
@@ -58,7 +56,7 @@ final class ManagerTypeTests: XCTestCase {
         var error: BluetoothError? = nil
         
         //when
-        sut.ensurePoweredOn()
+        sut.ensurePoweredOn(for: Empty(outputType: Void.self, failureType: BluetoothError.self).eraseToAnyPublisher())
             .sink(
                 receiveCompletion: { value in
                     if case let .failure(err) = value {
@@ -74,12 +72,12 @@ final class ManagerTypeTests: XCTestCase {
         XCTAssertEqual(error, nil)
     }
     
-    func test_ensurePoweredOn_stateChangedToPoweredOff_errorIfOfAppropriateType() {
+    func test_ensurePoweredOn_stateChangedToPoweredOff_errorIsOfAppropriateType() {
         //given
         var error: BluetoothError? = nil
         
         //when
-        sut.ensurePoweredOn()
+        sut.ensurePoweredOn(for: Empty(outputType: Void.self, failureType: BluetoothError.self).eraseToAnyPublisher())
             .sink(
                 receiveCompletion: { value in
                     if case let .failure(err) = value {

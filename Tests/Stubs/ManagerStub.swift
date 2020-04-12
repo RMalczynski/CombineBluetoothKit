@@ -1,9 +1,7 @@
 //
-//  ManagerTypeStub.swift
-//  CombineBluetoothKitTests
-//
-//  Created by Rafał Małczyński on 09/03/2020.
+//  CombineBluetoothKit
 //  Copyright © 2020 Rafał Małczyński. All rights reserved.
+//  Licensed under the MIT license (see LICENSE file)
 //
 
 import CoreBluetooth
