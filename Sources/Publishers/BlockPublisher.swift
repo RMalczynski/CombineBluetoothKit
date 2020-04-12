@@ -11,7 +11,7 @@ import Combine
 
 public extension Publishers {
     
-    class BlockPublisher<T: Publisher>: Publisher {
+    final class BlockPublisher<T: Publisher>: Publisher {
         public typealias Output = T.Output
         public typealias Failure = T.Failure
         

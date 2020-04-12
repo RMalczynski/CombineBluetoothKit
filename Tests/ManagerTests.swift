@@ -57,13 +57,11 @@ final class ManagerTests: XCTestCase {
         
         //when
         sut.ensurePoweredOn(for: Empty(outputType: Void.self, failureType: BluetoothError.self).eraseToAnyPublisher())
-            .sink(
-                receiveCompletion: { value in
-                    if case let .failure(err) = value {
-                        error = err
-                    }
-                },
-                receiveValue: { _ in })
+            .sink(receiveCompletion: { value in
+                if case let .failure(err) = value {
+                    error = err
+                }
+            }, receiveValue: { _ in })
             .store(in: &cancellables)
         
         sut.state.send(.poweredOn)
@@ -78,13 +76,11 @@ final class ManagerTests: XCTestCase {
         
         //when
         sut.ensurePoweredOn(for: Empty(outputType: Void.self, failureType: BluetoothError.self).eraseToAnyPublisher())
-            .sink(
-                receiveCompletion: { value in
-                    if case let .failure(err) = value {
-                        error = err
-                    }
-                },
-                receiveValue: { _ in })
+            .sink(receiveCompletion: { value in
+                if case let .failure(err) = value {
+                    error = err
+                }
+            }, receiveValue: { _ in })
             .store(in: &cancellables)
         
         sut.state.send(.poweredOff)
