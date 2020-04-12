@@ -8,7 +8,7 @@ import XCTest
 import Combine
 @testable import CombineBluetoothKit
 
-final class ManagerTypeTests: XCTestCase {
+final class ManagerTests: XCTestCase {
     
     var cancellables: [AnyCancellable]!
     var sut: ManagerStub!
