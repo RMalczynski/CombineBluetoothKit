@@ -10,8 +10,11 @@
 		9D7153CF243D22CC00C8E6C0 /* CentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7153CE243D22CC00C8E6C0 /* CentralManager.swift */; };
 		9D7153D2243D230700C8E6C0 /* Peripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7153D1243D230700C8E6C0 /* Peripheral.swift */; };
 		9D7153D4243D268B00C8E6C0 /* CentralManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7153D3243D268B00C8E6C0 /* CentralManagerDelegate.swift */; };
+		9DBCC7E62444C15400F5584A /* StateSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBCC7E52444C15400F5584A /* StateSubject.swift */; };
+		9DBCC7E92444C9DA00F5584A /* StateSubjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBCC7E72444C9A100F5584A /* StateSubjectTests.swift */; };
 		9DDD71C2244377EB009B6664 /* BlockPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDD71C1244377EB009B6664 /* BlockPublisher.swift */; };
 		9DDD71C92443CB45009B6664 /* BlockPublisherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDD71C72443CB16009B6664 /* BlockPublisherTests.swift */; };
+		9DDD71CB2443D3F2009B6664 /* PeripheralDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDD71CA2443D3F2009B6664 /* PeripheralDelegate.swift */; };
 		B513F1B7241195A600824A29 /* CombineBluetoothKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B513F1AD241195A500824A29 /* CombineBluetoothKit.framework */; };
 		B513F1BE241195A600824A29 /* CombineBluetoothKit.h in Headers */ = {isa = PBXBuildFile; fileRef = B513F1B0241195A500824A29 /* CombineBluetoothKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B5AD3AD02416E24700BD5E98 /* ManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AD3ACF2416E24700BD5E98 /* ManagerTests.swift */; };
@@ -38,8 +41,11 @@
 		9D7153CE243D22CC00C8E6C0 /* CentralManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralManager.swift; sourceTree = "<group>"; };
 		9D7153D1243D230700C8E6C0 /* Peripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Peripheral.swift; sourceTree = "<group>"; };
 		9D7153D3243D268B00C8E6C0 /* CentralManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralManagerDelegate.swift; sourceTree = "<group>"; };
+		9DBCC7E52444C15400F5584A /* StateSubject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateSubject.swift; sourceTree = "<group>"; };
+		9DBCC7E72444C9A100F5584A /* StateSubjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateSubjectTests.swift; sourceTree = "<group>"; };
 		9DDD71C1244377EB009B6664 /* BlockPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockPublisher.swift; sourceTree = "<group>"; };
 		9DDD71C72443CB16009B6664 /* BlockPublisherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockPublisherTests.swift; sourceTree = "<group>"; };
+		9DDD71CA2443D3F2009B6664 /* PeripheralDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralDelegate.swift; sourceTree = "<group>"; };
 		B513F1AD241195A500824A29 /* CombineBluetoothKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CombineBluetoothKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B513F1B0241195A500824A29 /* CombineBluetoothKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CombineBluetoothKit.h; sourceTree = "<group>"; };
 		B513F1B1241195A500824A29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -87,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				9D7153D1243D230700C8E6C0 /* Peripheral.swift */,
+				9DDD71CA2443D3F2009B6664 /* PeripheralDelegate.swift */,
 			);
 			path = Peripheral;
 			sourceTree = "<group>";
@@ -95,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				9DDD71C1244377EB009B6664 /* BlockPublisher.swift */,
+				9DBCC7E52444C15400F5584A /* StateSubject.swift */,
 			);
 			path = Publishers;
 			sourceTree = "<group>";
@@ -103,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				9DDD71C72443CB16009B6664 /* BlockPublisherTests.swift */,
+				9DBCC7E72444C9A100F5584A /* StateSubjectTests.swift */,
 			);
 			path = Publishers;
 			sourceTree = "<group>";
@@ -289,6 +298,8 @@
 				9D7153D2243D230700C8E6C0 /* Peripheral.swift in Sources */,
 				B5CED2652415192E00B09E8C /* TimeoutStrategy.swift in Sources */,
 				B5CED26C2415403000B09E8C /* BluetoothError.swift in Sources */,
+				9DBCC7E62444C15400F5584A /* StateSubject.swift in Sources */,
+				9DDD71CB2443D3F2009B6664 /* PeripheralDelegate.swift in Sources */,
 				B5CED2632413E93D00B09E8C /* StubBehavior.swift in Sources */,
 				9DDD71C2244377EB009B6664 /* BlockPublisher.swift in Sources */,
 				B5CED26A24152C9400B09E8C /* Manager.swift in Sources */,
@@ -303,6 +314,7 @@
 			files = (
 				9DDD71C92443CB45009B6664 /* BlockPublisherTests.swift in Sources */,
 				B5AD3AD02416E24700BD5E98 /* ManagerTests.swift in Sources */,
+				9DBCC7E92444C9DA00F5584A /* StateSubjectTests.swift in Sources */,
 				B5AD3AD32416E4C700BD5E98 /* ManagerStub.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

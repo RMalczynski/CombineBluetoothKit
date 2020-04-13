@@ -15,7 +15,7 @@ protocol Manager: AnyObject {
     var manager: ManagerType { get }
     
     /// Current state of `ManagerType`
-    var state: PassthroughSubject<ManagerState, Never> { get }
+    var state: Publishers.StateSubject<ManagerState, Never> { get }
     
 }
 
@@ -28,7 +28,7 @@ extension Manager {
     func ensurePoweredOn<T>(for publisher: AnyPublisher<T, BluetoothError>) -> AnyPublisher<T, BluetoothError> {
         return state
             .tryMap { [weak self] (state) -> ManagerState in
-                guard self != nil else {
+                guard let _ = self else {
                     throw BluetoothError.deallocated
                 }
                 

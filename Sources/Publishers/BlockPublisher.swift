@@ -1,9 +1,7 @@
 //
-//  BlockPublisher.swift
 //  CombineBluetoothKit
-//
-//  Created by Rafał Małczyński on 12/04/2020.
 //  Copyright © 2020 Rafał Małczyński. All rights reserved.
+//  Licensed under the MIT license (see LICENSE file)
 //
 
 import Foundation
@@ -11,7 +9,7 @@ import Combine
 
 public extension Publishers {
     
-    final class BlockPublisher<T: Publisher>: Publisher {
+    struct BlockPublisher<T: Publisher>: Publisher {
         public typealias Output = T.Output
         public typealias Failure = T.Failure
         

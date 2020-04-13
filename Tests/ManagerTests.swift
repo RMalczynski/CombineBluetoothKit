@@ -24,38 +24,41 @@ final class ManagerTests: XCTestCase {
     }
 
     func test_stateNotChanged_valuesAreNotEmitted() {
-        //given
+        //Given
         var states = [ManagerState]()
         
-        //when
+        //When
         sut.state
             .sink(receiveValue: { states.append($0) })
             .store(in: &cancellables)
         
-        //then
+        //Then
         XCTAssertEqual(states, [])
     }
     
     func test_stateChangedToPoweredOn_singleValueIsEmitted() {
-        //given
+        //Given
         var states = [ManagerState]()
         
-        //when
+        //When
         sut.state
-            .sink(receiveValue: { states.append($0) })
+            .sink(receiveValue: {
+                states.append($0)
+                
+            })
             .store(in: &cancellables)
         
         sut.state.send(.poweredOn)
         
-        //then
+        //Then
         XCTAssertEqual(states, [.poweredOn])
     }
     
     func test_ensurePoweredOn_stateChangedToPoweredOn_errorIsNil() {
-        //given
+        //Given
         var error: BluetoothError? = nil
         
-        //when
+        //When
         sut.ensurePoweredOn(for: Empty(outputType: Void.self, failureType: BluetoothError.self).eraseToAnyPublisher())
             .sink(receiveCompletion: { value in
                 if case let .failure(err) = value {
@@ -66,15 +69,15 @@ final class ManagerTests: XCTestCase {
         
         sut.state.send(.poweredOn)
         
-        //then
+        //Then
         XCTAssertEqual(error, nil)
     }
     
     func test_ensurePoweredOn_stateChangedToPoweredOff_errorIsOfAppropriateType() {
-        //given
+        //Given
         var error: BluetoothError? = nil
         
-        //when
+        //When
         sut.ensurePoweredOn(for: Empty(outputType: Void.self, failureType: BluetoothError.self).eraseToAnyPublisher())
             .sink(receiveCompletion: { value in
                 if case let .failure(err) = value {
@@ -85,7 +88,7 @@ final class ManagerTests: XCTestCase {
         
         sut.state.send(.poweredOff)
         
-        //then
+        //Then
         XCTAssertEqual(error, BluetoothError.bluetoothPoweredOff)
     }
     

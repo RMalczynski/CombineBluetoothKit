@@ -10,8 +10,7 @@ import Combine
 
 class ManagerStub: Manager {
     
-    var manager = CBCentralManager()
-    
-    var state = PassthroughSubject<ManagerState, Never>()
+    let manager = CBCentralManager()
+    let state = Publishers.StateSubject<ManagerState, Never>()
     
 }

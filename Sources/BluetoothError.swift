@@ -21,6 +21,9 @@ public enum BluetoothError: Error {
     case bluetoothUnauthorized
     case bluetoothPoweredOff
     
+    // Peripheral
+    case connectionFailure
+    
 }
 
 // ManagerState

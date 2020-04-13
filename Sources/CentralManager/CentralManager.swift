@@ -12,15 +12,18 @@ protocol CentralManagerProtocol: Manager {
     
     func scanForPeripherals(withServices services: [CBUUID]?, options: [String: Any]?) -> AnyPublisher<Peripheral, BluetoothError>
     
+    func establishConnection(to peripheral: Peripheral, withOptions options: [String: Any]?) -> AnyPublisher<Peripheral, BluetoothError>
+    
 }
 
-public class CentralManager: CentralManagerProtocol {
+public class CentralManager {
     
     let manager: CBCentralManager
     
-    public var state = PassthroughSubject<ManagerState, Never>()
-    private let delegate: CentralManagerDelegate
+    public var state = Publishers.StateSubject<ManagerState, Never>(.poweredOn)
+    let delegate: CentralManagerDelegate
     
+    private var peripherals = [UUID: Peripheral]()
     private var cancellables = [AnyCancellable]()
     
     public init(
@@ -34,6 +37,31 @@ public class CentralManager: CentralManagerProtocol {
         
         subscribeToDelegate()
     }
+    
+    // MARK: - Private methods
+    
+    private func subscribeToDelegate() {
+        delegate
+            .didUpdateState
+            .sink { self.state.send($0) }
+            .store(in: &cancellables)
+        
+        delegate
+            .didConnectPeripheral
+            .sink { [weak self] in self?.peripherals[$0.identifier]?.connectionState.send(true) }
+            .store(in: &cancellables)
+        
+        delegate
+            .didDisconnectPeripheral
+            .sink { [weak self] in self?.peripherals[$0.identifier]?.connectionState.send(false) }
+            .store(in: &cancellables)
+    }
+    
+}
+
+// MARK: - CentralManagerProtocol
+
+extension CentralManager: CentralManagerProtocol {
     
     func scanForPeripherals(
         withServices services: [CBUUID]?,
@@ -49,7 +77,7 @@ public class CentralManager: CentralManagerProtocol {
             return self.delegate
                 .didDiscoverAdvertisementData
                 .map { peripheral, advertisementData, rssi in
-                    return Peripheral(with: peripheral)
+                    return Peripheral(with: peripheral, delegate: PeripheralDelegate(), centralManager: self)
                 }
                 .mapError { _ in BluetoothError.unknown}
                 .eraseToAnyPublisher()
@@ -58,13 +86,32 @@ public class CentralManager: CentralManagerProtocol {
         return ensurePoweredOn(for: publisher)
     }
     
-    // MARK: - Private methods
+}
+
+// MARK: - Peripheral actions
+
+extension CentralManager {
     
-    private func subscribeToDelegate() {
-        delegate
-            .didUpdateState
-            .sink { self.state.send($0) }
-            .store(in: &cancellables)
+    func establishConnection(
+        to peripheral: Peripheral,
+        withOptions options: [String: Any]?
+    ) -> AnyPublisher<Peripheral, BluetoothError> {
+        let publisher = Publishers.BlockPublisher { [weak self] () -> AnyPublisher<Peripheral, BluetoothError> in
+            guard let self = self else {
+                return Fail(outputType: Peripheral.self, failure: BluetoothError.deallocated).eraseToAnyPublisher()
+            }
+            
+            self.manager.connect(peripheral.peripheral, options: options)
+            
+            return peripheral
+                .connectionState
+                .filter { $0 == true }
+                .map { _ in peripheral }
+                .mapError { _ in BluetoothError.connectionFailure }
+                .eraseToAnyPublisher()
+        }.eraseToAnyPublisher()
+        
+        return ensurePoweredOn(for: publisher)
     }
     
 }
