@@ -76,10 +76,16 @@ extension CentralManager: CentralManagerProtocol {
             
             return self.delegate
                 .didDiscoverAdvertisementData
-                .map { peripheral, advertisementData, rssi in
-                    return Peripheral(with: peripheral, delegate: PeripheralDelegate(), centralManager: self)
+                .tryMap { [weak self] peripheral, advertisementData, rssi in // TODO: use advData and rssi
+                    guard let self = self else {
+                        throw BluetoothError.deallocated
+                    }
+                    
+                    let scannedPeripheral = Peripheral(with: peripheral, delegate: PeripheralDelegate(), centralManager: self)
+                    self.peripherals[peripheral.identifier] = scannedPeripheral
+                    return scannedPeripheral
                 }
-                .mapError { _ in BluetoothError.unknown}
+                .mapError { $0 as? BluetoothError ?? BluetoothError.unknown}
                 .eraseToAnyPublisher()
         }.eraseToAnyPublisher()
 
