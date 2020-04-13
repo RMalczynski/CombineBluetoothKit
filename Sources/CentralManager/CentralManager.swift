@@ -20,7 +20,7 @@ public class CentralManager {
     
     let manager: CBCentralManager
     
-    public var state = Publishers.StateSubject<ManagerState, Never>(.poweredOn)
+    public var state = Publishers.StateSubject<ManagerState, Never>()
     let delegate: CentralManagerDelegate
     
     private var peripherals = [UUID: Peripheral]()
