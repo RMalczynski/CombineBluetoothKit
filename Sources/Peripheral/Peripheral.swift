@@ -12,8 +12,7 @@ public protocol PeripheralProtocol {
  
     func connectPeripheral(withOptions options: [String: Any]?) -> AnyPublisher<Self, BluetoothError>
     func discoverServices(serviceUUIDs: [CBUUID]?) -> AnyPublisher<Self, BluetoothError>
-//    func discoverCharacteristics(characteristicUUIDs: [CBUUID]?, for: CBService) -> AnyPublisher<Self, BluetoothError>
-//    func discoverDescriptors(for characteristic: CBCharacteristic) -> AnyPublisher<Self, BluetoothError>
+    func discoverCharacteristics(characteristicUUIDs: [CBUUID]?, for service: CBService) -> AnyPublisher<Self, BluetoothError>
     
 }
 
@@ -68,13 +67,29 @@ extension Peripheral: PeripheralProtocol {
             .ensurePoweredOn(for: publisher)
             .eraseToAnyPublisher()
     }
-//
-//    public func discoverCharacteristics(characteristicUUIDs: [CBUUID]?, for: CBService) -> AnyPublisher<Peripheral, BluetoothError> {
-//
-//    }
-//
-//    public func discoverDescriptors(for characteristic: CBCharacteristic) -> AnyPublisher<Peripheral, BluetoothError> {
-//
-//    }
+
+    public func discoverCharacteristics(characteristicUUIDs: [CBUUID]?, for service: CBService) -> AnyPublisher<Peripheral, BluetoothError> {
+        let publisher = Publishers.BlockPublisher { [weak self] () -> AnyPublisher<Peripheral, BluetoothError> in
+            guard let self = self else {
+                return Fail(outputType: Peripheral.self, failure: BluetoothError.deallocated).eraseToAnyPublisher()
+            }
+                
+            self.peripheral.discoverCharacteristics(characteristicUUIDs, for: service)
+            
+            return self.delegate
+                .didDiscoverCharacteristics
+                .tryFilter { [weak self] in
+                    guard let self = self else { throw BluetoothError.deallocated }
+                    return $0.0.identifier == self.peripheral.identifier
+                }
+                .map { _ in self }
+                .mapError { $0 as? BluetoothError ?? BluetoothError.unknown }
+                .eraseToAnyPublisher()
+        }.eraseToAnyPublisher()
+        
+        return centralManager
+            .ensurePoweredOn(for: publisher)
+            .eraseToAnyPublisher()
+    }
     
 }
