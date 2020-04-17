@@ -8,7 +8,7 @@ import Foundation
 import CoreBluetooth
 import Combine
 
-protocol CentralManagerProtocol: Manager {
+public protocol CentralManagerProtocol: Manager {
     
     func scanForPeripherals(withServices services: [CBUUID]?, options: [String: Any]?) -> AnyPublisher<Peripheral, BluetoothError>
     
@@ -18,7 +18,7 @@ protocol CentralManagerProtocol: Manager {
 
 public class CentralManager {
     
-    let manager: CBCentralManager
+    public let manager: CBCentralManager
     
     public var state = Publishers.StateSubject<ManagerState, Never>()
     let delegate: CentralManagerDelegate
@@ -63,7 +63,7 @@ public class CentralManager {
 
 extension CentralManager: CentralManagerProtocol {
     
-    func scanForPeripherals(
+    public func scanForPeripherals(
         withServices services: [CBUUID]?,
         options: [String: Any]?
     ) -> AnyPublisher<Peripheral, BluetoothError> {
@@ -98,7 +98,7 @@ extension CentralManager: CentralManagerProtocol {
 
 extension CentralManager {
     
-    func establishConnection(
+    public func establishConnection(
         to peripheral: Peripheral,
         withOptions options: [String: Any]?
     ) -> AnyPublisher<Peripheral, BluetoothError> {

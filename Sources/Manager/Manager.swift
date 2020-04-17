@@ -8,7 +8,7 @@ import Foundation
 import Combine
 
 /// Type designated for wrapping classes that inherit from `CBManager`
-protocol Manager: AnyObject {
+public protocol Manager: AnyObject {
     associatedtype ManagerType
     
     /// Object inheriting from `CBManager`
