@@ -18,11 +18,11 @@ public protocol PeripheralProtocol {
 
 public final class Peripheral {
     
-    let peripheral: CBPeripheral
+    public let peripheral: CBPeripheral
     private let delegate: PeripheralDelegate
     private let centralManager: CentralManager
     
-    let connectionState = CurrentValueSubject<Bool, Never>(false)
+    public let connectionState = CurrentValueSubject<Bool, Never>(false)
     
     init(
         with peripheral: CBPeripheral,
