@@ -23,6 +23,9 @@ public final class Peripheral {
     private let centralManager: CentralManager
     
     let connectionState = CurrentValueSubject<Bool, Never>(false)
+    let rssi = CurrentValueSubject<Int, Never>(0)
+    
+    private var cancellables = [AnyCancellable]()
     
     init(
         with peripheral: CBPeripheral,
@@ -34,6 +37,21 @@ public final class Peripheral {
         self.centralManager = centralManager
         
         self.peripheral.delegate = self.delegate
+        
+        subscribeToDelegate()
+    }
+    
+    // MARK: - Private methods
+    
+    private func subscribeToDelegate() {
+        delegate.didReadRSSI
+            .sink { [weak self] peripheral, RSSI in
+                guard peripheral.identifier == self?.peripheral.identifier else {
+                    return
+                }
+                self?.rssi.send(Int(truncating: RSSI))
+            }
+            .store(in: &cancellables)
     }
     
 }

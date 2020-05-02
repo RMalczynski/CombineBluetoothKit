@@ -38,6 +38,12 @@ public class CentralManager {
         subscribeToDelegate()
     }
     
+    // MARK: - Public methods
+    
+    public func stopScanning() {
+        manager.stopScan()
+    }
+    
     // MARK: - Private methods
     
     private func subscribeToDelegate() {
@@ -112,7 +118,10 @@ extension CentralManager {
             return peripheral
                 .connectionState
                 .filter { $0 == true }
-                .map { _ in peripheral }
+                .map { _ in
+                    peripheral.peripheral.readRSSI()
+                    return peripheral
+                }
                 .mapError { _ in BluetoothError.connectionFailure }
                 .eraseToAnyPublisher()
         }.eraseToAnyPublisher()
