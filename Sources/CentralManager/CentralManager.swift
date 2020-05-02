@@ -63,12 +63,6 @@ public class CentralManager {
             .store(in: &cancellables)
     }
     
-    // MARK: - Public methods
-    
-    public func stopScanning() {
-        manager.stopScan()
-    }
-    
 }
 
 // MARK: - CentralManagerProtocol
