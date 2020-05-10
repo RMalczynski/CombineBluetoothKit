@@ -14,6 +14,7 @@ public final class PeripheralDelegate: NSObject, CBPeripheralDelegate {
     let didDiscoverCharacteristics = PassthroughSubject<(CBPeripheral, for: CBService), Error>()
     let didDiscoverDescriptors = PassthroughSubject<(CBPeripheral, for: CBCharacteristic), Error>()
     let didReadRSSI = PassthroughSubject<(CBPeripheral, NSNumber), Never>()
+    let didUpdateValue = PassthroughSubject<(CBPeripheral, CBCharacteristic), Never>()
     
     public func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         didDiscoverServices.send(peripheral)
@@ -29,6 +30,10 @@ public final class PeripheralDelegate: NSObject, CBPeripheralDelegate {
     
     public func peripheral(_ peripheral: CBPeripheral, didReadRSSI RSSI: NSNumber, error: Error?) {
         didReadRSSI.send((peripheral, RSSI))
+    }
+    
+    public func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
+        didUpdateValue.send((peripheral, characteristic))
     }
     
 }

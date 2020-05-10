@@ -11,9 +11,12 @@ import Combine
 public protocol PeripheralProtocol {
  
     func connectPeripheral(withOptions options: [String: Any]?) -> AnyPublisher<Self, BluetoothError>
+    
     func discoverServices(serviceUUIDs: [CBUUID]?) -> AnyPublisher<Self, BluetoothError>
     func discoverCharacteristics(characteristicUUIDs: [CBUUID]?, for service: CBService) -> AnyPublisher<Self, BluetoothError>
     func discoverDescriptors(for characteristic: CBCharacteristic) -> AnyPublisher<Self, BluetoothError>
+    
+    func readValue(for characteristic: CBCharacteristic) -> AnyPublisher<Self, BluetoothError>
     
 }
 
@@ -59,6 +62,8 @@ public final class Peripheral {
 
 extension Peripheral: PeripheralProtocol {
     
+    // MARK: - Connection
+    
     public func connectPeripheral(withOptions options: [String: Any]? = nil) -> AnyPublisher<Peripheral, BluetoothError> {
         centralManager.establishConnection(to: self, withOptions: options)
     }
@@ -86,6 +91,8 @@ extension Peripheral: PeripheralProtocol {
             .ensurePoweredOn(for: publisher)
             .eraseToAnyPublisher()
     }
+    
+    // MARK: - Discovery
 
     public func discoverCharacteristics(characteristicUUIDs: [CBUUID]?, for service: CBService) -> AnyPublisher<Peripheral, BluetoothError> {
         let publisher = Publishers.BlockPublisher { [weak self] () -> AnyPublisher<Peripheral, BluetoothError> in
@@ -121,6 +128,32 @@ extension Peripheral: PeripheralProtocol {
             
             return self.delegate
                 .didDiscoverDescriptors
+                .tryFilter { [weak self] in
+                    guard let self = self else { throw BluetoothError.deallocated }
+                    return $0.0.identifier == self.peripheral.identifier
+                }
+                .map { _ in self }
+                .mapError { $0 as? BluetoothError ?? BluetoothError.unknown }
+                .eraseToAnyPublisher()
+        }.eraseToAnyPublisher()
+        
+        return centralManager
+            .ensurePoweredOn(for: publisher)
+            .eraseToAnyPublisher()
+    }
+    
+    // MARK: - Managing values
+    
+    public func readValue(for characteristic: CBCharacteristic) -> AnyPublisher<Peripheral, BluetoothError> {
+        let publisher = Publishers.BlockPublisher { [weak self] () -> AnyPublisher<Peripheral, BluetoothError> in
+            guard let self = self else {
+                return Fail(outputType: Peripheral.self, failure: BluetoothError.deallocated).eraseToAnyPublisher()
+            }
+                
+            self.peripheral.readValue(for: characteristic)
+            
+            return self.delegate
+                .didUpdateValue
                 .tryFilter { [weak self] in
                     guard let self = self else { throw BluetoothError.deallocated }
                     return $0.0.identifier == self.peripheral.identifier
